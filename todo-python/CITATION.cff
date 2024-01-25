@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Malfait"
+    given-names: "Milan"
+    email: "milan.malfait94@gmail.com"
+repository-code: "https://github.com/milanmlft/todo-python"
+title: "Todo list in Python: A Todo list manager written in Python"
+license: "MIT"
