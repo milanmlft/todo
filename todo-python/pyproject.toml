@@ -14,6 +14,8 @@ classifiers = [
   "Typing :: Typed"
 ]
 dependencies = [
+  "configparser==6.0.0",
+  "pathlib==1.0.1",
   "typer==0.9.0"
 ]
 description = "A Todo list manager written in Python"
