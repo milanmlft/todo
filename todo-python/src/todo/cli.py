@@ -1,6 +1,8 @@
 """CLI for the Python To-Do app."""
 
 
+from typing import Optional
+
 import typer
 
 from todo import __app_name__, __version__
@@ -16,7 +18,7 @@ def _version_callback(*, value: bool) -> None:
 
 @app.callback()
 def main(
-    version: bool | None = typer.Option(  # noqa: ARG001
+    version: Optional[bool] = typer.Option(  # noqa: ARG001, UP007
         None,
         "--version",
         "-v",
