@@ -16,17 +16,15 @@
 [tests-link]:               https://github.com/milanmlft/todo-python/actions/workflows/tests.yml
 [linting-badge]:            https://github.com/milanmlft/todo-python/actions/workflows/linting.yml/badge.svg
 [linting-link]:             https://github.com/milanmlft/todo-python/actions/workflows/linting.yml
-[conda-badge]:              https://img.shields.io/conda/vn/conda-forge/todo-python
-[conda-link]:               https://github.com/conda-forge/todo-python-feedstock
-[pypi-link]:                https://pypi.org/project/todo-python/
-[pypi-platforms]:           https://img.shields.io/pypi/pyversions/todo-python
-[pypi-version]:             https://img.shields.io/pypi/v/todo-python
-[license-badge]:            https://img.shields.io/badge/License-MIT-yellow.svg
+<!-- [conda-badge]:              https://img.shields.io/conda/vn/conda-forge/todo-python -->
+<!-- [conda-link]:               https://github.com/conda-forge/todo-python-feedstock -->
+<!-- [pypi-link]:                https://pypi.org/project/todo-python/ -->
+<!-- [pypi-platforms]:           https://img.shields.io/pypi/pyversions/todo-python -->
+<!-- [pypi-version]:             https://img.shields.io/pypi/v/todo-python -->
+<!-- [license-badge]:            https://img.shields.io/badge/License-MIT-yellow.svg -->
 <!-- prettier-ignore-end -->
 
 A Todo list manager written in Python
-
-This project is developed in collaboration with the [Centre for Advanced Research Computing](https://ucl.ac.uk/arc), University College London.
 
 ## About
 
@@ -34,20 +32,13 @@ This project is developed in collaboration with the [Centre for Advanced Researc
 
 Milan Malfait ([milan.malfait94@gmail.com](mailto:milan.malfait94@gmail.com))
 
-<!-- TODO: how do we have an array of collaborators ? -->
-
 ### Research Software Engineering Contact
 
-Centre for Advanced Research Computing, University College London
-([arc.collaborations@ucl.ac.uk](mailto:arc.collaborations@ucl.ac.uk))
-
-## Built With
-
-<!-- TODO: can cookiecutter make a list of frameworks? -->
-
-[Framework 1](https://something.com)
-[Framework 2](https://something.com)
-[Framework 3](https://something.com)
+<!-- ## Built With -->
+<!---->
+<!-- [Framework 1](https://something.com) -->
+<!-- [Framework 2](https://something.com) -->
+<!-- [Framework 3](https://something.com) -->
 
 ## Getting Started
 
