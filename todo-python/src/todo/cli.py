@@ -1,13 +1,42 @@
 """CLI for the Python To-Do app."""
 
 
+from pathlib import Path
 from typing import Optional
 
 import typer
 
-from todo import __app_name__, __version__
+from todo import ERRORS, __app_name__, __version__, config, database
 
 app = typer.Typer()
+
+
+@app.command()
+def init(
+    db_path: str = typer.Option(
+        str(database.DEFAULT_DB_FILE_PATH),
+        "--db-path",
+        "-db",
+        prompt="to-do databae location?",
+    ),
+) -> None:
+    """Initialise the to-do database."""
+    app_init_error = config.init_app(db_path)
+    if app_init_error:
+        typer.secho(
+            f'Creating config file failed with "{ERRORS[app_init_error]}"',
+            fg=typer.colors.RED,
+        )
+        raise typer.Exit(1)
+
+    db_init_error = database.init_database(Path(db_path))
+    if db_init_error:
+        typer.secho(
+            f'Creating the to-do database failed with "{ERRORS[db_init_error]}"'
+        )
+        raise typer.Exit(1)
+
+    typer.secho(f"The to-do databse is {db_path}", fg=typer.colors.GREEN)
 
 
 def _version_callback(*, value: bool) -> None:
