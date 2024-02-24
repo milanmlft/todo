@@ -66,7 +66,7 @@ class DatabaseHandler:
     def write_todos(self: "DatabaseHandler", todo_list: list[dict[str, Any]]) -> DBResponse:
         """Write to the JSON todo database and return a `DBResponse` isntance."""
         try:
-            with self._db_path.open("r") as db:
+            with self._db_path.open("w") as db:
                 json.dump(todo_list, db, indent=4)
                 return DBResponse(todo_list, SUCCESS)
         except OSError:  # Catch file IO errors
