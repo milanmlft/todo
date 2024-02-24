@@ -3,9 +3,7 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools"]
 
 [project]
-authors = [
-  {email = "milan.malfait94@gmail.com", name = "Milan Malfait"}
-]
+authors = [{email = "milan.malfait94@gmail.com", name = "Milan Malfait"}]
 classifiers = [
   "Operating System :: POSIX",
   "Programming Language :: Python :: 3",
@@ -13,17 +11,10 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Typing :: Typed"
 ]
-dependencies = [
-  "configparser==6.0.0",
-  "pathlib==1.0.1",
-  "typer==0.9.0"
-]
+dependencies = ["configparser==6.0.0", "pathlib==1.0.1", "typer==0.9.0"]
 description = "A Todo list manager written in Python"
-dynamic = [
-  "version"
-]
-keywords = [
-]
+dynamic = ["version"]
+keywords = []
 name = "todo-python"
 optional-dependencies = {dev = [
   "build",
@@ -41,19 +32,12 @@ urls.homepage = "https://github.com/milanmlft/todo"
 
 [tool.coverage]
 report = {skip_covered = true, sort = "cover"}
-run = {branch = true, parallel = true, source = [
-  "todo-python"
-]}
-paths.source = [
-  "src",
-  ".tox*/*/lib/python*/site-packages"
-]
+run = {branch = true, parallel = true, source = ["todo-python"]}
+paths.source = ["src", ".tox*/*/lib/python*/site-packages"]
 
 [tool.mypy]
 explicit_package_bases = true
-plugins = [
-  "numpy.typing.mypy_plugin"
-]
+plugins = ["numpy.typing.mypy_plugin"]
 
 [tool.pytest.ini_options]
 addopts = """
@@ -61,11 +45,10 @@ addopts = """
     --import-mode=importlib
     --verbose
 """
-testpaths = [
-  "tests"
-]
+testpaths = ["tests"]
 
 [tool.ruff]
+line-length = 100
 fix = true
 force-exclude = true
 ignore = [
@@ -76,21 +59,12 @@ ignore = [
   "D417", # argument description in docstring (unreliable)
   "ISC001" # simplify implicit str concatenation (ruff-format recommended)
 ]
-per-file-ignores = {"tests*" = [
-  "INP001",
-  "S101"
-]}
-select = [
-  "ALL"
-]
+per-file-ignores = {"tests*" = ["INP001", "S101"]}
+select = ["ALL"]
 target-version = "py312"
-isort.known-first-party = [
-  "todo_python"
-]
+isort.known-first-party = ["todo_python"]
 mccabe.max-complexity = 18
-pep8-naming.classmethod-decorators = [
-  "classmethod"
-]
+pep8-naming.classmethod-decorators = ["classmethod"]
 
 [tool.setuptools_scm]
 local_scheme = "no-local-version"
