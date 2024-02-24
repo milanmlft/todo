@@ -69,7 +69,7 @@ again from the root of the repository.
 
 - [x] Set up initial project structure
 - [x] Set up app initialisation
-- [ ] Set up todo back-end
+- [x] Set up todo back-end
 - [ ] Implement adding and listing todo's
 - [ ] Implement todo completion functionality
 - [ ] Implement removing todo's
