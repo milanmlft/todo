@@ -3,6 +3,7 @@
 from pathlib import Path
 from typing import Any, NamedTuple
 
+from todo import DB_READ_ERROR
 from todo.database import DatabaseHandler
 
 
@@ -24,3 +25,23 @@ class Todoer:
     def __init__(self: "Todoer", db_path: Path) -> None:
         """Initialise the Todoer class, composing it with an instance of DatabaseHandler."""
         self._db_handler = DatabaseHandler(db_path)  # <-- Composition!
+
+    def add(self: "Todoer", description: list[str], priority: int = 2) -> CurrentTodo:
+        """Add a new todo to the database."""
+        description_text = " ".join(description)
+        if not description_text.endswith("."):
+            description_text += "."
+
+        todo = {
+            "Description": description_text,
+            "Priority": priority,
+            "Done": False,
+        }
+
+        read = self._db_handler.read_todos()
+        if read.error == DB_READ_ERROR:
+            return CurrentTodo(todo, read.error)
+
+        read.todo_list.append(todo)
+        write = self._db_handler.write_todos(read.todo_list)
+        return CurrentTodo(todo, write.error)
