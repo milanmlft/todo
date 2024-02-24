@@ -67,15 +67,13 @@ again from the root of the repository.
 
 ## Roadmap
 
--   [x] Set up initial project structure
--   [x] Set up app initialisation
--   [ ] Implement adding todo's
--   [ ] Implement removing todo's
--   [ ] Implement listing todo's
--   [ ] Implement marking todo's as done
--   [ ] Implement marking todo's as not done
--   [ ] Implement editing todo's
--   [ ] Improve todo displaying
+- [x] Set up initial project structure
+- [x] Set up app initialisation
+- [ ] Set up todo back-end
+- [ ] Implement adding and listing todo's
+- [ ] Implement todo completion functionality
+- [ ] Implement removing todo's
+- [ ] Improve todo displaying
 
 ## Acknowledgements
 
