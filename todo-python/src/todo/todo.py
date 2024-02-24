@@ -1,6 +1,10 @@
 """"The todo model-controller."""
 
+from pathlib import Path
+
 from typinr import Any, NamedTuple
+
+from todo.database import DatabaseHandler
 
 
 class CurrentTodo(NamedTuple):
@@ -13,3 +17,11 @@ class CurrentTodo(NamedTuple):
 
     todo: dict[str, Any]
     error: int
+
+
+class Todoer:
+    """The main Controller class, handling database connections."""
+
+    def __init__(self: "Todoer", db_path: Path) -> None:
+        """Initialise the Todoer class, composing it with an instance of DatabaseHandler."""
+        self._db_handler = DatabaseHandler(db_path)  # <-- Composition!
