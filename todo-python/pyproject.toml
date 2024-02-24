@@ -59,7 +59,7 @@ ignore = [
   "D417", # argument description in docstring (unreliable)
   "ISC001" # simplify implicit str concatenation (ruff-format recommended)
 ]
-per-file-ignores = {"tests*" = ["INP001", "S101"]}
+per-file-ignores = {"tests*" = ["INP001", "S101", "SLF001", "PLR2004"]}
 select = ["ALL"]
 target-version = "py312"
 isort.known-first-party = ["todo_python"]
