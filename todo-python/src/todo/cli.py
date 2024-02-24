@@ -6,7 +6,7 @@ from typing import Optional
 
 import typer
 
-from todo import ERRORS, __app_name__, __version__, config, database
+from todo import ERRORS, __app_name__, __version__, config, database, todo
 
 app = typer.Typer()
 
@@ -31,12 +31,43 @@ def init(
 
     db_init_error = database.init_database(Path(db_path))
     if db_init_error:
-        typer.secho(
-            f'Creating the to-do database failed with "{ERRORS[db_init_error]}"'
-        )
+        typer.secho(f'Creating the to-do database failed with "{ERRORS[db_init_error]}"')
         raise typer.Exit(1)
 
     typer.secho(f"The to-do databse is {db_path}", fg=typer.colors.GREEN)
+
+
+def get_todoer() -> todo.Todoer:
+    """Get the  todo controller."""
+    if not config.CONFIG_FILE_PATH.exists():
+        typer.secho("Config file not found, please run `todo init`.", fg=typer.colors.RED)
+        raise typer.Exit(1)
+
+    db_path = database.get_database_path(config.CONFIG_FILE_PATH)
+
+    if not db_path.exists():
+        typer.secho("Database file not found, please run `todo init`.", fg=typer.colors.RED)
+        raise typer.Exit(1)
+
+    return todo.Todoer(db_path)
+
+
+@app.command()
+def add(
+    description: list[str] = typer.Argument(...),  # noqa: B008, functiona calls in argument
+    priority: int = typer.Option(2, "--priority", "-p", min=1, max=3),
+) -> None:
+    """Add a new todo."""
+    todoer = get_todoer()
+    todo, error = todoer.add(description, priority)
+
+    if error:
+        typer.secho(f'Adding to-do failed with "{ERRORS[error]}"', fg=typer.colors.RED)
+        raise typer.Exit(1)
+    typer.secho(
+        f"""to-do: "{todo['Description']}" was added """ f"""with priority: {priority}""",
+        fg=typer.colors.GREEN,
+    )
 
 
 def _version_callback(*, value: bool) -> None:
