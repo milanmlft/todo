@@ -5,23 +5,11 @@
 [![Linting status][linting-badge]][linting-link]
 [![License][license-badge]](./LICENSE.md)
 
-<!--
-[![PyPI version][pypi-version]][pypi-link]
-[![Conda-Forge][conda-badge]][conda-link]
-[![PyPI platforms][pypi-platforms]][pypi-link]
--->
-
 <!-- prettier-ignore-start -->
-[tests-badge]:              https://github.com/milanmlft/todo-python/actions/workflows/tests.yml/badge.svg
-[tests-link]:               https://github.com/milanmlft/todo-python/actions/workflows/tests.yml
-[linting-badge]:            https://github.com/milanmlft/todo-python/actions/workflows/linting.yml/badge.svg
-[linting-link]:             https://github.com/milanmlft/todo-python/actions/workflows/linting.yml
-<!-- [conda-badge]:              https://img.shields.io/conda/vn/conda-forge/todo-python -->
-<!-- [conda-link]:               https://github.com/conda-forge/todo-python-feedstock -->
-<!-- [pypi-link]:                https://pypi.org/project/todo-python/ -->
-<!-- [pypi-platforms]:           https://img.shields.io/pypi/pyversions/todo-python -->
-<!-- [pypi-version]:             https://img.shields.io/pypi/v/todo-python -->
-<!-- [license-badge]:            https://img.shields.io/badge/License-MIT-yellow.svg -->
+[tests-badge]:              https://github.com/milanmlft/todo/actions/workflows/python-tests.yml/badge.svg
+[tests-link]:               https://github.com/milanmlft/todo/actions/workflows/python-tests.yml
+[linting-badge]:            https://github.com/milanmlft/todo/actions/workflows/python-linting.yml/badge.svg
+[linting-link]:             https://github.com/milanmlft/todo/actions/workflows/python_linting.yml
 <!-- prettier-ignore-end -->
 
 A Todo list manager written in Python
@@ -34,31 +22,15 @@ Milan Malfait ([milan.malfait94@gmail.com](mailto:milan.malfait94@gmail.com))
 
 ### Research Software Engineering Contact
 
-<!-- ## Built With -->
-<!---->
-<!-- [Framework 1](https://something.com) -->
-<!-- [Framework 2](https://something.com) -->
-<!-- [Framework 3](https://something.com) -->
-
 ## Getting Started
 
 ### Prerequisites
-
-<!-- Any tools or versions of languages needed to run code. For example specific Python or Node versions. Minimum hardware requirements also go here. -->
 
 `todo-python` requires Python 3.12.
 
 ### Installation
 
-<!-- How to build or install the application. -->
-
 We recommend installing in a project specific virtual environment created using a environment management tool such as [Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html) or [Conda](https://conda.io/projects/conda/en/latest/). To install the latest development version of `todo-python` using `pip` in the currently active environment run
-
-```sh
-pip install git+https://github.com/milanmlft/todo-python.git
-```
-
-Alternatively create a local clone of the repository with
 
 ```sh
 git clone https://github.com/milanmlft/todo-python.git
@@ -95,10 +67,15 @@ again from the root of the repository.
 
 ## Roadmap
 
-- [x] Initial Research
-- [ ] Minimum viable product <-- You are Here
-- [ ] Alpha Release
-- [ ] Feature-Complete Release
+-   [x] Set up initial project structure
+-   [x] Set up app initialisation
+-   [ ] Implement adding todo's
+-   [ ] Implement removing todo's
+-   [ ] Implement listing todo's
+-   [ ] Implement marking todo's as done
+-   [ ] Implement marking todo's as not done
+-   [ ] Implement editing todo's
+-   [ ] Improve todo displaying
 
 ## Acknowledgements
 
