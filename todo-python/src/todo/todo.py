@@ -1,8 +1,7 @@
 """"The todo model-controller."""
 
 from pathlib import Path
-
-from typinr import Any, NamedTuple
+from typing import Any, NamedTuple
 
 from todo.database import DatabaseHandler
 
