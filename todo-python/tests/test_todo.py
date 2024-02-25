@@ -67,7 +67,7 @@ test_data2 = {
     ],
 )
 def test_add(
-    mock_json_file: Path, description: str, priority: int, expected: list[dict[str, Any]]
+    mock_json_file: Path, description: list[str], priority: int, expected: list[dict[str, Any]]
 ) -> None:
     """Test adding todo's to an existing database."""
     todoer = Todoer(mock_json_file)
