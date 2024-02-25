@@ -3,12 +3,11 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Tests status][tests-badge]][tests-link]
 [![Linting status][linting-badge]][linting-link]
-[![License][license-badge]](./LICENSE.md)
 
 <!-- prettier-ignore-start -->
-[tests-badge]:              https://github.com/milanmlft/todo/actions/workflows/python-tests.yml/badge.svg
-[tests-link]:               https://github.com/milanmlft/todo/actions/workflows/python-tests.yml
-[linting-badge]:            https://github.com/milanmlft/todo/actions/workflows/python-linting.yml/badge.svg
+[tests-badge]:              https://github.com/milanmlft/todo/actions/workflows/python_tests.yml/badge.svg
+[tests-link]:               https://github.com/milanmlft/todo/actions/workflows/python_tests.yml
+[linting-badge]:            https://github.com/milanmlft/todo/actions/workflows/python_linting.yml/badge.svg
 [linting-link]:             https://github.com/milanmlft/todo/actions/workflows/python_linting.yml
 <!-- prettier-ignore-end -->
 
