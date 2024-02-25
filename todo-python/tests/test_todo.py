@@ -19,10 +19,13 @@ def test_version() -> None:
     assert f"{__app_name__} v{__version__}\n" in result.stdout
 
 
+test_data0 = {"Description": "Get some milk.", "Priority": 2, "Done": False}
+
+
 @pytest.fixture()
 def mock_json_file(tmp_path: Path) -> Path:
     """Mock todo database JSON file."""
-    todo = [{"Description": "Get some milk.", "Priority": 2, "Done": False}]
+    todo = [test_data0]
     db_file = tmp_path / "todo.json"
 
     with db_file.open("w") as db:
@@ -74,3 +77,9 @@ def test_add(
     assert todoer.add(description, priority) == expected
     new_todo_list = todoer._db_handler.read_todos()
     assert len(new_todo_list) == 2
+
+
+def test_get_todo_list(mock_json_file: Path) -> None:
+    """Test getting the todo list from an existing database."""
+    todoer = Todoer(mock_json_file)
+    assert todoer.get_todo_list() == [test_data0]
