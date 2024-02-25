@@ -10,7 +10,7 @@ from todo.config import CONFIG_FILE_PATH, init_app
 
 def test_init_app(tmp_path: Path) -> None:
     """Tests whether the app config can be initialised."""
-    # Arange
+    # Arrange
     config = ConfigParser()
 
     # Act
