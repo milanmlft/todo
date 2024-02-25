@@ -76,6 +76,40 @@ def _version_callback(*, value: bool) -> None:
         raise typer.Exit
 
 
+@app.command("list")
+def list_all() -> None:
+    """List all to-do's."""
+    todoer = get_todoer()
+    todo_list = todoer.get_todo_list()
+    if len(todo_list) == 0:
+        typer.secho("No to-do's found.", fg=typer.colors.RED)
+        raise typer.Exit
+
+    typer.secho("\nto-do list:\n", fg=typer.colors.BLUE)
+    columns = (
+        "ID  ",
+        "| Priority  ",
+        "| Done  ",
+        "| Description  ",
+    )
+    headers = "".join(columns)
+    typer.secho(headers, fg=typer.colors.BLUE, bold=True)
+    typer.secho("-" * len(headers), fg=typer.colors.BLUE)
+
+    # Loop over todo list and assign ID to each one
+    for idx, item in enumerate(todo_list, start=1):
+        desc, priority, done = item.values()
+        typer.secho(
+            # print the id, priority, done and description with proper padding
+            f"{idx}{(len(columns[0]) - len(str(idx))) * ' '}"
+            f"| ({priority}){(len(columns[1]) - len(str(priority)) - 4) * ' '}"
+            f"| {done}{(len(columns[2]) - len(str(done)) - 2) * ' '}"
+            f"| {desc}",
+            fg=typer.colors.CYAN if done else typer.colors.YELLOW,
+        )
+    typer.secho("-" * len(headers) + "\n", fg=typer.colors.BLUE)
+
+
 @app.callback()
 def main(
     version: Optional[bool] = typer.Option(  # noqa: ARG001, UP007

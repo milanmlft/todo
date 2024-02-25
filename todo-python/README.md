@@ -32,13 +32,14 @@ Milan Malfait ([milan.malfait94@gmail.com](mailto:milan.malfait94@gmail.com))
 We recommend installing in a project specific virtual environment created using a environment management tool such as [Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html) or [Conda](https://conda.io/projects/conda/en/latest/). To install the latest development version of `todo-python` using `pip` in the currently active environment run
 
 ```sh
-git clone https://github.com/milanmlft/todo-python.git
+git clone https://github.com/milanmlft/todo.git
 ```
 
 and then install in editable mode by running
 
 ```sh
-pip install -e .
+pip install -e ./todo-python
+```
 ```
 
 ### Running Locally
@@ -69,7 +70,7 @@ again from the root of the repository.
 - [x] Set up initial project structure
 - [x] Set up app initialisation
 - [x] Set up todo back-end
-- [ ] Implement adding and listing todo's
+- [x] Implement adding and listing todo's
 - [ ] Implement todo completion functionality
 - [ ] Implement removing todo's
 - [ ] Improve todo displaying
