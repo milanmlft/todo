@@ -16,7 +16,8 @@ jobs:
                 python-version:
                     - "3.12"
         defaults:
-            working-directory: ./todo-python
+            run:
+                working-directory: ./todo-python
 
         steps:
             - name: Checkout source
