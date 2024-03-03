@@ -71,9 +71,10 @@ again from the root of the repository.
 - [x] Set up app initialisation
 - [x] Set up todo back-end
 - [x] Implement adding and listing todo's
-- [ ] Implement todo completion functionality
-- [ ] Implement removing todo's
-- [ ] Improve todo displaying
+- [x] Implement todo completion functionality
+- [x] Implement removing todo's
+- [ ] Add support for dates and deadlines
+- [ ] Increase code coverage
 
 ## Acknowledgements
 
