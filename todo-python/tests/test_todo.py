@@ -101,3 +101,12 @@ def test_set_done_throws(mock_json_file: Path) -> None:
     todo, error = todoer.set_done(2)
     assert todo == {}
     assert error == ID_ERROR
+
+
+def test_remove(mock_json_file: Path) -> None:
+    """Test if removing todo's works."""
+    todoer = Todoer(mock_json_file)
+    todo, error = todoer.remove(0)
+    assert todo == test_data0
+    assert error == SUCCESS
+    assert todoer.get_todo_list() == []
