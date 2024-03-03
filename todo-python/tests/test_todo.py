@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any
 
 import pytest
-from todo import SUCCESS, __app_name__, __version__, cli
+from todo import ID_ERROR, SUCCESS, __app_name__, __version__, cli
 from todo.todo import Todoer
 from typer.testing import CliRunner
 
@@ -83,3 +83,21 @@ def test_get_todo_list(mock_json_file: Path) -> None:
     """Test getting the todo list from an existing database."""
     todoer = Todoer(mock_json_file)
     assert todoer.get_todo_list() == [test_data0]
+
+
+def test_set_done(mock_json_file: Path) -> None:
+    """Test setting a todo as done in an existing database."""
+    todoer = Todoer(mock_json_file)
+
+    assert not todoer.get_todo_list()[0]["Done"]
+    todo, error = todoer.set_done(0)
+    assert todo["Done"]
+    assert error == SUCCESS
+
+
+def test_set_done_throws(mock_json_file: Path) -> None:
+    """Test that setting an invalid todo as done fails."""
+    todoer = Todoer(mock_json_file)
+    todo, error = todoer.set_done(2)
+    assert todo == {}
+    assert error == ID_ERROR

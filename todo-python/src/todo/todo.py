@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import Any, NamedTuple
 
-from todo import DB_READ_ERROR
+from todo import DB_READ_ERROR, ID_ERROR
 from todo.database import DatabaseHandler
 
 
@@ -50,3 +50,19 @@ class Todoer:
         """Get the current list of todo's."""
         read = self._db_handler.read_todos()
         return read.todo_list
+
+    def set_done(self: "Todoer", todo_id: int) -> CurrentTodo:
+        """Set a todo as done."""
+        read = self._db_handler.read_todos()
+
+        if read.error == DB_READ_ERROR:
+            return CurrentTodo({}, read.error)
+
+        try:
+            todo = read.todo_list[todo_id - 1]
+        except IndexError:
+            return CurrentTodo({}, ID_ERROR)
+
+        todo["Done"] = True
+        write = self._db_handler.write_todos(read.todo_list)
+        return CurrentTodo(todo, write.error)

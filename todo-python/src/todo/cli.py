@@ -54,7 +54,7 @@ def get_todoer() -> todo.Todoer:
 
 @app.command()
 def add(
-    description: list[str] = typer.Argument(...),  # noqa: B008, functiona calls in argument
+    description: list[str] = typer.Argument(...),  # noqa: B008, function calls in argument
     priority: int = typer.Option(2, "--priority", "-p", min=1, max=3),
 ) -> None:
     """Add a new todo."""
@@ -68,12 +68,6 @@ def add(
         f"""to-do: "{todo['Description']}" was added """ f"""with priority: {priority}""",
         fg=typer.colors.GREEN,
     )
-
-
-def _version_callback(*, value: bool) -> None:
-    if value:
-        typer.echo(f"{__app_name__} v{__version__}")
-        raise typer.Exit
 
 
 @app.command("list")
@@ -105,9 +99,32 @@ def list_all() -> None:
             f"| ({priority}){(len(columns[1]) - len(str(priority)) - 4) * ' '}"
             f"| {done}{(len(columns[2]) - len(str(done)) - 2) * ' '}"
             f"| {desc}",
-            fg=typer.colors.CYAN if done else typer.colors.YELLOW,
+            fg=typer.colors.GREEN if done else typer.colors.YELLOW,
         )
     typer.secho("-" * len(headers) + "\n", fg=typer.colors.BLUE)
+
+
+@app.command("complete")
+def set_done(todo_id: int = typer.Argument(...)) -> None:
+    """Mark a todo item as completed."""
+    todoer = get_todoer()
+    todo, error = todoer.set_done(todo_id)
+
+    if error:
+        typer.secho(
+            f'Completing to-do {todo_id} failed with "{ERRORS[error]}"', fg=typer.colors.RED
+        )
+        raise typer.Exit(1)
+    typer.secho(
+        f"to-do: {todo['Description']} marked as completed",
+        fg=typer.colors.GREEN,
+    )
+
+
+def _version_callback(*, value: bool) -> None:
+    if value:
+        typer.echo(f"{__app_name__} v{__version__}")
+        raise typer.Exit
 
 
 @app.callback()
