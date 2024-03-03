@@ -34,7 +34,7 @@ def mock_json_file(tmp_path: Path) -> Path:
     return db_file
 
 
-test_data1 = {
+test_data1: dict[str, Any] = {
     "description": ["Clean", "the", "house"],
     "priority": 1,
     "todo": {
@@ -43,7 +43,7 @@ test_data1 = {
         "Done": False,
     },
 }
-test_data2 = {
+test_data2: dict[str, Any] = {
     "description": ["Wash the car"],
     "priority": 2,
     "todo": {
@@ -109,4 +109,16 @@ def test_remove(mock_json_file: Path) -> None:
     todo, error = todoer.remove(0)
     assert todo == test_data0
     assert error == SUCCESS
+    assert todoer.get_todo_list() == []
+
+
+def test_remove_all(mock_json_file: Path) -> None:
+    """Test if removing all todo's works."""
+    todoer = Todoer(mock_json_file)
+
+    # Add more than 1 todo
+    todoer.add(test_data1["description"], test_data1["priority"])
+    todoer.add(test_data2["description"], test_data2["priority"])
+
+    todoer.remove_all()
     assert todoer.get_todo_list() == []

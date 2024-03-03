@@ -151,6 +151,29 @@ def remove(
         typer.secho("Operation canceled.")
 
 
+@app.command("clear")
+def remove_all(
+    *,
+    force: bool = typer.Option(
+        ...,
+        prompt="Delete all todos?",
+        help="Force deletion without confirmation.",
+    ),
+) -> None:
+    """Remove all todo's."""
+    todoer = get_todoer()
+
+    if force:
+        error = todoer.remove_all().error
+        if error:
+            typer.secho(f'Removing todos failed with "{ERRORS[error]}"', fg=typer.colors.RED)
+            raise typer.Exit(1)
+        typer.secho("All todos were removed", fg=typer.colors.GREEN)
+
+    else:
+        typer.secho("Operation canceled.")
+
+
 def _version_callback(*, value: bool) -> None:
     if value:
         typer.echo(f"{__app_name__} v{__version__}")
