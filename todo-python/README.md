@@ -3,12 +3,15 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Tests status][tests-badge]][tests-link]
 [![Linting status][linting-badge]][linting-link]
+[![codecov][codecov-badge]][codecov-link]
 
 <!-- prettier-ignore-start -->
-[tests-badge]:              https://github.com/milanmlft/todo/actions/workflows/python_tests.yml/badge.svg
-[tests-link]:               https://github.com/milanmlft/todo/actions/workflows/python_tests.yml
-[linting-badge]:            https://github.com/milanmlft/todo/actions/workflows/python_linting.yml/badge.svg
-[linting-link]:             https://github.com/milanmlft/todo/actions/workflows/python_linting.yml
+[tests-badge]: https://github.com/milanmlft/todo/actions/workflows/python_tests.yml/badge.svg
+[tests-link]: https://github.com/milanmlft/todo/actions/workflows/python_tests.yml
+[linting-badge]: https://github.com/milanmlft/todo/actions/workflows/python_linting.yml/badge.svg
+[linting-link]: https://github.com/milanmlft/todo/actions/workflows/python_linting.yml
+[codecov-badge]: https://codecov.io/gh/milanmlft/todo/graph/badge.svg?token=O5nMtb3G1H
+[codecov-link]: https://codecov.io/gh/milanmlft/todo
 <!-- prettier-ignore-end -->
 
 A Todo list manager written in Python
