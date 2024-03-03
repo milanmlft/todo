@@ -32,7 +32,7 @@ urls.homepage = "https://github.com/milanmlft/todo"
 
 [tool.coverage]
 report = {skip_covered = true, sort = "cover"}
-run = {branch = true, parallel = true, source = ["todo-python"]}
+run = {branch = true, parallel = true, source = ["todo"]}
 paths.source = ["src", ".tox*/*/lib/python*/site-packages"]
 
 [tool.mypy]
