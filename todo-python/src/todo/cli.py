@@ -121,6 +121,21 @@ def set_done(todo_id: int = typer.Argument(...)) -> None:
     )
 
 
+@app.command("remove")
+def remove(todo_id: int = typer.Argument(...)) -> None:
+    """Remove a todo using its ID."""
+    todoer = get_todoer()
+    todo, error = todoer.remove(todo_id)
+
+    if error:
+        typer.secho(f'Removing to-do {todo_id} failed with "{ERRORS[error]}"', fg=typer.colors.RED)
+        raise typer.Exit(1)
+    typer.secho(
+        f"to-do: {todo['Description']} removed",
+        fg=typer.colors.GREEN,
+    )
+
+
 def _version_callback(*, value: bool) -> None:
     if value:
         typer.echo(f"{__app_name__} v{__version__}")
