@@ -3,36 +3,36 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools"]
 
 [project]
-authors = [{email = "milan.malfait94@gmail.com", name = "Milan Malfait"}]
+authors = [{ email = "milan.malfait94@gmail.com", name = "Milan Malfait" }]
 classifiers = [
   "Operating System :: POSIX",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.12",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
 dependencies = ["configparser==6.0.0", "pathlib==1.0.1", "typer==0.9.0"]
 description = "A Todo list manager written in Python"
 dynamic = ["version"]
 keywords = []
 name = "todo-python"
-optional-dependencies = {dev = [
+optional-dependencies = { dev = [
   "build",
   "mypy",
   "pre-commit",
   "pytest",
   "ruff",
   "tox>=4",
-  "twine"
-]}
+  "twine",
+] }
 readme = "README.md"
 requires-python = ">=3.12"
 license.file = "LICENSE.md"
 urls.homepage = "https://github.com/milanmlft/todo"
 
 [tool.coverage]
-report = {skip_covered = true, sort = "cover"}
-run = {branch = true, parallel = true, source = ["todo"]}
+report = { skip_covered = true, sort = "cover" }
+run = { branch = true, parallel = true, source = ["todo"] }
 paths.source = ["src", ".tox*/*/lib/python*/site-packages"]
 
 [tool.mypy]
@@ -53,13 +53,13 @@ fix = true
 force-exclude = true
 ignore = [
   "COM812", # trailing commas (ruff-format recommended)
-  "D203", # no-blank-line-before-class
-  "D212", # multi-line-summary-first-line
-  "D407", # removed dashes lines under sections
-  "D417", # argument description in docstring (unreliable)
-  "ISC001" # simplify implicit str concatenation (ruff-format recommended)
+  "D203",   # no-blank-line-before-class
+  "D212",   # multi-line-summary-first-line
+  "D407",   # removed dashes lines under sections
+  "D417",   # argument description in docstring (unreliable)
+  "ISC001", # simplify implicit str concatenation (ruff-format recommended)
 ]
-per-file-ignores = {"tests*" = ["INP001", "S101", "SLF001", "PLR2004"]}
+per-file-ignores = { "tests*" = ["INP001", "S101", "SLF001", "PLR2004"] }
 select = ["ALL"]
 target-version = "py312"
 isort.known-first-party = ["todo_python"]
