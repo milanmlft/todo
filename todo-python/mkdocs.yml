@@ -1,0 +1,4 @@
+site_name: todo
+nav:
+    - Home: index.md
+    - About: about.md
