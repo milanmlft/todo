@@ -43,11 +43,6 @@ and then install in editable mode by running
 ```sh
 pip install -e ./todo-python
 ```
-```
-
-### Running Locally
-
-How to run the application on your local system.
 
 ### Running Tests
 
