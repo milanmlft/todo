@@ -1,4 +1,9 @@
 site_name: todo
+theme: material
+
+plugins:
+  - mkdocstrings
+
 nav:
   - Home: index.md
   - About: about.md
@@ -6,4 +11,3 @@ nav:
   - How-To guides: how-to-guides.md
   - reference.md
   - explanation.md
-theme: material
