@@ -20,9 +20,7 @@ A Todo list manager written in Python
 
 ### Project Team
 
-Milan Malfait ([milan.malfait94@gmail.com](mailto:milan.malfait94@gmail.com))
-
-### Research Software Engineering Contact
+Milan Malfait ([@milanmlft](https://github.com/milanmlft))
 
 ## Getting Started
 

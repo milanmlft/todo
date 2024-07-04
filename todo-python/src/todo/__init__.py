@@ -1,4 +1,14 @@
-"""Top-level package for To-Do."""
+"""
+Manage your to-do lists from the command line.
+
+Modules exported by this package:
+
+- `__main__`: The main entry point
+- `cli`: The command-line interface
+- `config`: Configuration settings
+- `database`: Database handling
+- `todo`: The main controller class
+"""
 
 __app_name__ = "todo"
 __version__ = "0.1.0"
