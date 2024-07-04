@@ -4,6 +4,7 @@
 [![Tests status][tests-badge]][tests-link]
 [![Linting status][linting-badge]][linting-link]
 [![codecov][codecov-badge]][codecov-link]
+[![Documentation](https://img.shields.io/badge/Documentation-todo-blueviolet.svg)](https://milanmlft.github.io/todo)
 
 <!-- prettier-ignore-start -->
 [tests-badge]: https://github.com/milanmlft/todo/actions/workflows/python_tests.yml/badge.svg
