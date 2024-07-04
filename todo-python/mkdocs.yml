@@ -1,4 +1,5 @@
 site_name: todo
 nav:
-    - Home: index.md
-    - About: about.md
+  - Home: index.md
+  - About: about.md
+theme: readthedocs
