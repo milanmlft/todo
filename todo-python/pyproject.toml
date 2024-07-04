@@ -18,6 +18,7 @@ keywords = []
 name = "todo-python"
 optional-dependencies = { dev = [
   "build",
+  "mkdocs",
   "mypy",
   "pre-commit",
   "pytest",
