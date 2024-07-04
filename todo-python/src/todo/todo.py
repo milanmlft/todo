@@ -1,4 +1,4 @@
-""""The todo model-controller."""
+"""The todo model-controller."""
 
 from pathlib import Path
 from typing import Any, NamedTuple
