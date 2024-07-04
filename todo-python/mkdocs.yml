@@ -2,4 +2,8 @@ site_name: todo
 nav:
   - Home: index.md
   - About: about.md
-theme: readthedocs
+  - Tutorials: tutorials.md
+  - How-To guides: how-to-guides.md
+  - reference.md
+  - explanation.md
+theme: material
