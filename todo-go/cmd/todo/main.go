@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"github.com/milanmlft/todo/todo-go/todo"
+)
 
 func main() {
-	fmt.Println("Hello, world!")
+	todos := &todo.Todos{}
+	task := todo.Task{
+		Description: "Do this",
+		Priority:    2,
+	}
+	todos.Add(task)
+	todos.Print()
 }
