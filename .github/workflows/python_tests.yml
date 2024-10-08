@@ -1,12 +1,14 @@
-name: Tests
+name: Python Tests
 
 on:
     push:
         branches:
             - main
+        paths:
+            - todo-python/**
     pull_request:
-        paths-ignore:
-            - "**.md"
+        paths:
+            - todo-python/**
 
 jobs:
     tests:
