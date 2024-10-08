@@ -1,11 +1,15 @@
-name: Linting
+name: Python Linting
 
 on:
     push:
         branches:
             - main
+        paths:
+            - todo-python/**
     pull_request:
-
+        paths:
+            - todo-python/**
+            
 jobs:
     linting:
         runs-on: ubuntu-latest
