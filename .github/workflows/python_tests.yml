@@ -9,8 +9,6 @@ on:
     pull_request:
         paths:
             - todo-python/**
-        paths-ignore:
-            - "**.md"
 
 jobs:
     tests:
