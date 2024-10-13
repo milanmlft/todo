@@ -5,26 +5,25 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths: ["todo-go/**"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths: ["todo-go/**"]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.23'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.23"
 
-    - name: Build
-      run: go build -v ./todo-go/...
+      - name: Build
+        run: cd todo-go && go build -v ./...
 
-    - name: Test
-      run: go test -v ./todo-go/...
+      - name: Test
+        run: cd todo-go && go test -v ./todo-go/...
