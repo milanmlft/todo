@@ -16,40 +16,40 @@ type Task struct {
 
 type Todos []Task
 
-func (t *Todos) Add(todo_item Task) {
-	todo_item.CreatedAt = time.Now()
-	*t = append(*t, todo_item)
+func (t *Todos) Add(todoItem Task) {
+	todoItem.CreatedAt = time.Now()
+	*t = append(*t, todoItem)
 }
 
 func (t *Todos) Complete(id int) error {
-	todo_list := *t
-	if id <= 0 || id > len(todo_list) {
+	todoList := *t
+	if id <= 0 || id > len(todoList) {
 		return errors.New("Index out of range")
 	}
 
 	// The Todo ids use 1-based indexing, so need to subtract 1
-	todo_list[id-1].CompletedAt = time.Now()
-	todo_list[id-1].Done = true
+	todoList[id-1].CompletedAt = time.Now()
+	todoList[id-1].Done = true
 
 	return nil
 }
 
 func (t *Todos) Remove(id int) error {
-	todo_list := *t
-	if id <= 0 || id > len(todo_list) {
+	todoList := *t
+	if id <= 0 || id > len(todoList) {
 		return errors.New("Index out of range")
 	}
-	*t = append(todo_list[:id-1], todo_list[id:]...)
+	*t = append(todoList[:id-1], todoList[id:]...)
 	return nil
 }
 
 func (t *Todos) Print() {
 	for i, item := range *t {
 		i++
-		done_str := "false"
+		done := "false"
 		if item.Done {
-			done_str = "true"
+			done = "true"
 		}
-		fmt.Printf("%d - %s - Priority: %d - Done: %s\n", i, item.Description, item.Priority, done_str)
+		fmt.Printf("%d - %s - Priority: %d - Done: %s\n", i, item.Description, item.Priority, done)
 	}
 }
