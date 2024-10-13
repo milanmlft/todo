@@ -23,3 +23,6 @@ go.work.sum
 
 # env file
 .env
+
+# The built executable
+todo-go
