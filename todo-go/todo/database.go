@@ -17,6 +17,10 @@ type DatabaseHandler struct {
 	path string
 }
 
+func GetDBHandler(dbpath string) DatabaseHandler {
+	return DatabaseHandler{path: dbpath}
+}
+
 func (db *DatabaseHandler) ReadTodos() (Todos, error) {
 	contents, err := os.ReadFile(db.path)
 	if err != nil {
