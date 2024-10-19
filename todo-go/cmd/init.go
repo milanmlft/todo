@@ -3,7 +3,7 @@ package cmd
 import (
 	"log"
 
-	"github.com/milanmlft/todo/todo-go/database"
+	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
 )
 
@@ -26,7 +26,7 @@ func init() {
 }
 
 func initRun(cmd *cobra.Command, args []string) {
-	err := database.InitialiseDB(dbPath)
+	err := todo.InitialiseDB(dbPath)
 	if err != nil {
 		log.Fatalf("Initialising database failed with error `%v`", err)
 	}

@@ -1,10 +1,8 @@
-package database
+package todo
 
 import (
 	"os"
 	"testing"
-
-	"github.com/milanmlft/todo/todo-go/todo"
 )
 
 func TestInitialiseDB(t *testing.T) {
@@ -41,7 +39,7 @@ func TestReadingAndWritingTodos(t *testing.T) {
 	defer os.Remove(dbpath.Name())
 
 	db := DatabaseHandler{path: dbpath.Name()}
-	origTodos := todo.Todos{todo.Task{Description: "todo"}}
+	origTodos := Todos{Task{Description: "todo"}}
 
 	err = db.WriteTodos(origTodos)
 	if err != nil {
