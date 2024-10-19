@@ -18,7 +18,8 @@ var initCmd = &cobra.Command{
         todo-go init                Creates new database at default location ~/.todo-go.json
         todo-go init todos.json     Creates new database at ./todso.json
     `,
-	Run: initRun,
+	Args: cobra.MaximumNArgs(1),
+	Run:  initRun,
 }
 
 func init() {
@@ -46,9 +47,6 @@ func initRun(cmd *cobra.Command, args []string) {
 		dbPath = home + string(os.PathSeparator) + ".todo-go.json"
 	case 1:
 		dbPath = args[0]
-	default:
-		log.Fatal("init requires at most 1 argument.")
-
 	}
 	err := database.InitialiseDB(dbPath)
 	if err != nil {
