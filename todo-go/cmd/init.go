@@ -10,14 +10,14 @@ import (
 
 // initCmd represents the init command
 var initCmd = &cobra.Command{
-	Use:   "init",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Use:   "init [optional path]",
+	Short: "Initialise a new todo list.",
+	Long: `Create a new database to store your todo list.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+    For example:
+        todo-go init                Creates new database at default location ~/.todo-go.json
+        todo-go init todos.json     Creates new database at ./todso.json
+    `,
 	Run: initRun,
 }
 
