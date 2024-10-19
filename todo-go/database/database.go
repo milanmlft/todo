@@ -10,9 +10,6 @@ func InitialiseDB(path string) error {
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile(path, b, 0644)
-	if err != nil {
-		return err
-	}
-	return nil
+	err = os.WriteFile(path, encoding, 0644)
+	return err
 }
