@@ -14,8 +14,8 @@ var initCmd = &cobra.Command{
 	Long: `Create a new database to store your todo list.
 
     For example:
-        todo-go init                Creates new database at default location ~/.todo-go.json
-        todo-go init --db-path todos.json     Creates new database at ./todso.json
+        todo-go init                        Creates new database at default location ~/.todo-go.json
+        todo-go init --db-path todos.json   Creates new database at ./todos.json
     `,
 	Args: cobra.MaximumNArgs(0),
 	Run:  initRun,
