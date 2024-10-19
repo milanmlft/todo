@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"log"
+
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
 )
@@ -28,10 +30,16 @@ func init() {
 }
 
 func addRun(cmd *cobra.Command, args []string) {
-	todos := todo.Todos{}
+	db := todo.GetDBHandler(dbPath)
+	todos, err := db.ReadTodos()
+	if err != nil {
+		log.Fatalf("Failed to read todos from database with `%v`", err)
+	}
+
 	for _, arg := range args {
 		newTask := todo.Task{Description: arg}
 		todos.Add(newTask)
 	}
+	db.WriteTodos(todos)
 	todos.Print()
 }
