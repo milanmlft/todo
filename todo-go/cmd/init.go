@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"log"
+	"os"
 
 	"github.com/milanmlft/todo/todo-go/database"
 	"github.com/spf13/cobra"
@@ -38,7 +39,11 @@ func initRun(cmd *cobra.Command, args []string) {
 	var dbPath string
 	switch len(args) {
 	case 0:
-		dbPath = "~/.todo-go.json"
+		home, err := os.UserHomeDir()
+		if err != nil {
+			log.Fatalf("Failed to retrieve home directory. Set database path manually.")
+		}
+		dbPath = home + string(os.PathSeparator) + ".todo-go.json"
 	case 1:
 		dbPath = args[0]
 	default:
@@ -49,4 +54,5 @@ func initRun(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatalf("Initialising database failed with error `%v`", err)
 	}
+	log.Printf("Initialised todo database at %s", dbPath)
 }
