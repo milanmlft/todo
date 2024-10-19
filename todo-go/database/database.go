@@ -6,7 +6,7 @@ import (
 )
 
 func InitialiseDB(path string) error {
-	b, err := json.Marshal("[]")
+	encoding, err := json.Marshal([]string{})
 	if err != nil {
 		return err
 	}
