@@ -1,6 +1,5 @@
 """CLI for the Python To-Do app."""
 
-
 from pathlib import Path
 from typing import Optional
 
@@ -17,7 +16,7 @@ def init(
         str(database.DEFAULT_DB_FILE_PATH),
         "--db-path",
         "-db",
-        prompt="to-do databae location?",
+        prompt="to-do database location?",
     ),
 ) -> None:
     """Initialise the to-do database."""
