@@ -26,6 +26,7 @@ func init() {
 }
 
 func initRun(cmd *cobra.Command, args []string) {
+	// TODO: ask for confirmation to overwrite existing file
 	err := todo.InitialiseDB(dbPath)
 	if err != nil {
 		log.Fatalf("Initialising database failed with error `%v`", err)

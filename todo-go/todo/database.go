@@ -10,6 +10,7 @@ func InitialiseDB(path string) error {
 	if err != nil {
 		return err
 	}
+	// TODO: warn if file already exists
 	return os.WriteFile(path, encoding, 0644)
 }
 
