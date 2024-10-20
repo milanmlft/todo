@@ -18,15 +18,8 @@ var addCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addCmd)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// addCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	addCmd.PersistentFlags().BoolP("verbose", "v", false,
+		"Verbosity, whether to print task list after adding")
 }
 
 func addRun(cmd *cobra.Command, args []string) {
@@ -41,5 +34,8 @@ func addRun(cmd *cobra.Command, args []string) {
 		todos.Add(newTask)
 	}
 	db.WriteTodos(todos)
-	todos.Print()
+
+	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
+		todos.Print()
+	}
 }
