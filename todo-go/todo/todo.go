@@ -53,3 +53,15 @@ func (t *Todos) Print() {
 		fmt.Printf("%d - %s - Priority: %d - Done: %s\n", i, item.Description, item.Priority, done)
 	}
 }
+
+func (task *Task) SetPriority(priority int) {
+	// We only allow a fixed set of priorities between 1-3
+	switch priority {
+	case 1:
+		task.Priority = 1
+	case 3:
+		task.Priority = 3
+	default:
+		task.Priority = 2
+	}
+}
