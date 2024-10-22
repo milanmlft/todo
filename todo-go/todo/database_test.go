@@ -47,10 +47,48 @@ func TestReadingAndWritingTodos(t *testing.T) {
 	}
 
 	readTodos, err := db.ReadTodos()
-	if len(readTodos) != len(origTodos) {
-		t.Fatalf("db.readTodos() returned %d todos, want %d", len(readTodos), len(origTodos))
+	if err != nil {
+		t.Fatalf("db.ReadTodos() failed with %v; want nil", err)
 	}
-	if readTodos[0] != origTodos[0] {
-		t.Fatalf("db.ReadTodos() returned %v, want %v", readTodos, origTodos)
+	if len(readTodos) != len(origTodos) {
+		t.Fatalf("db.ReadTodos() returned %d todos, want %d", len(readTodos), len(origTodos))
+	}
+	if readTodos[0].Description != origTodos[0].Description {
+		t.Fatalf("db.ReadTodos() returned non-matching description: %v, want %v",
+			readTodos[0].Description, origTodos[0].Description)
+	}
+	if readTodos[0].Priority != origTodos[0].Priority {
+		t.Fatalf("db.ReadTodos() returned non-matching priority: %d, want %d",
+			readTodos[0].Priority, origTodos[0].Priority)
+	}
+	if readTodos[0].Done != origTodos[0].Done {
+		t.Fatalf("db.ReadTodos() returned non-matching done status: %v, want %v",
+			readTodos[0].Done, origTodos[0].Done)
+	}
+}
+
+func TestReadingTodosPosition(t *testing.T) {
+	dbpath, err := os.CreateTemp("", "tmp.json")
+	if err != nil {
+		panic(err)
+	}
+	defer os.Remove(dbpath.Name())
+
+	db := DatabaseHandler{path: dbpath.Name()}
+	origTodos := Todos{Task{Description: "todo"}}
+
+	err = db.WriteTodos(origTodos)
+	if err != nil {
+		t.Fatalf("db.WriteTodos(mockTodos) failed with %v; want nil", err)
+	}
+
+	readTodos, err := db.ReadTodos()
+	if err != nil {
+		t.Fatalf("db.ReadTodos() failed with %v; want nil", err)
+	}
+
+	if readTodos[0].position != 1 {
+		t.Fatalf("db.ReadTodos() did not set correct position: %v, want %v",
+			readTodos[0].position, 1)
 	}
 }
