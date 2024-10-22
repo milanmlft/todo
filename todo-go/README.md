@@ -11,7 +11,7 @@ A Todo list manager written in Go.
 - [x] Add `list` command to print current todos
 - [x] Add `done` command to mark todos as done
 - [ ] Add flag to `list` to filter on "done/not-done" todos
-- [ ] Support setting priority in commands:
-    - [ ] Add optional flag to `add` to set priority of new todo
-    - [ ] Add `set-priority` to change priority of an existing todo
-- [ ] Add `remove` command to remove a todo
+- [x] Add optional flag to `add` to set priority of new todo
+- [x] Add `remove` command to remove a todo
+- [ ] Use an `enum` for priorities with labels `"low", "medium", "high"` and use these in printing
+- [ ] Add `edit` command to modify an existing todo
