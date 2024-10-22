@@ -8,8 +8,8 @@ A Todo list manager written in Go.
 - [x] Set up CLI framework with `cobra`
 - [x] Add database handler to make todos persist
 - [x] Add basic CLI commands to initialise and add todos
-- [ ] Add `list` command to print current todos
-- [ ] Add `done` command to mark todos as done
+- [x] Add `list` command to print current todos
+- [x] Add `done` command to mark todos as done
 - [ ] Add flag to `list` to filter on "done/not-done" todos
 - [ ] Support setting priority in commands:
     - [ ] Add optional flag to `add` to set priority of new todo
