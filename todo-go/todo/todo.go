@@ -3,6 +3,8 @@ package todo
 import (
 	"errors"
 	"fmt"
+	"os"
+	"text/tabwriter"
 	"time"
 )
 
@@ -12,6 +14,7 @@ type Task struct {
 	Description string
 	Done        bool
 	Priority    int
+	position    int
 }
 
 type Todos []Task
@@ -44,14 +47,12 @@ func (t *Todos) Remove(id int) error {
 }
 
 func (t *Todos) Print() {
-	for i, item := range *t {
-		i++
-		done := "false"
-		if item.Done {
-			done = "true"
-		}
-		fmt.Printf("%d - %s - Priority: %d - Done: %s\n", i, item.Description, item.Priority, done)
+	writer := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
+	for i, task := range *t {
+		task.position = i + 1
+		fmt.Fprintln(writer, task.prettyPrint())
 	}
+	writer.Flush()
 }
 
 func (task *Task) SetPriority(priority int) {
@@ -64,4 +65,26 @@ func (task *Task) SetPriority(priority int) {
 	default:
 		task.Priority = 2
 	}
+}
+
+func (task *Task) prettyPrint() string {
+	var priorityLabel string
+
+	switch task.Priority {
+	case 1:
+		priorityLabel = "low"
+	case 3:
+		priorityLabel = "high"
+	default:
+		priorityLabel = "medium"
+	}
+
+	doneLabel := "[ ]"
+	if task.Done {
+		doneLabel = "[x]"
+	}
+
+	return fmt.Sprintf(
+		"%d. \t %s \t %s \t Priority: %s",
+		task.position, doneLabel, task.Description, priorityLabel)
 }
