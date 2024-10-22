@@ -11,8 +11,8 @@ import (
 // doneCmd represents the done command
 var doneCmd = &cobra.Command{
 	Use:   "done [task ID]",
-	Short: "Mark a task as done",
-	Long:  `Set the status of the given task to done`,
+	Short: "Mark tasks as done",
+	Long:  `Set the status of the given tasks to done`,
 	Args:  cobra.MinimumNArgs(1),
 	Run:   doneRun,
 }
@@ -20,7 +20,7 @@ var doneCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(doneCmd)
 	doneCmd.PersistentFlags().BoolP("verbose", "v", false,
-		"Verbosity, whether to print task list after adding")
+		"Verbosity, whether to print task list after completing")
 }
 
 func doneRun(cmd *cobra.Command, args []string) {
@@ -30,13 +30,16 @@ func doneRun(cmd *cobra.Command, args []string) {
 		log.Fatalf("Failed to read todos from database with `%v`", err)
 	}
 
-	id, err := strconv.Atoi(args[0])
-	if err != nil {
-		log.Fatalln(args[0], "is not a valid ID\n", err)
-	}
-	err = todos.Complete(id)
-	if err != nil {
-		log.Fatalf("Error: %v", err)
+	for _, arg := range args {
+		id, err := strconv.Atoi(arg)
+		if err != nil {
+			log.Fatalln(arg, "is not a valid ID\n", err)
+		}
+		err = todos.Complete(id)
+		if err != nil {
+			log.Fatalf("Error for arg %s: %v", arg, err)
+		}
+
 	}
 	db.WriteTodos(todos)
 
