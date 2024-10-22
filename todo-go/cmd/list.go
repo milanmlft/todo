@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"log"
+	"sort"
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
@@ -20,6 +21,8 @@ var listCmd = &cobra.Command{
 		if err != nil {
 			log.Fatalf("Failed to read todos from database with `%v`", err)
 		}
+		// Use Reverse to list higher priority first
+		sort.Sort(sort.Reverse(todos))
 		todos.Print()
 	},
 }
