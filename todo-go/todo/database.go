@@ -33,6 +33,10 @@ func (db *DatabaseHandler) ReadTodos() (Todos, error) {
 	if err != nil {
 		return Todos{}, err
 	}
+	// Set position field based on order of items in the database
+	for i := range todos {
+		todos[i].position = i + 1
+	}
 	return todos, nil
 }
 

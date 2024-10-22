@@ -48,8 +48,7 @@ func (t *Todos) Remove(id int) error {
 
 func (t *Todos) Print() {
 	writer := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
-	for i, task := range *t {
-		task.position = i + 1
+	for _, task := range *t {
 		fmt.Fprintln(writer, task.prettyPrint())
 	}
 	writer.Flush()
