@@ -34,7 +34,10 @@ func doneRun(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatalln(args[0], "is not a valid ID\n", err)
 	}
-	todos.Complete(id)
+	err = todos.Complete(id)
+	if err != nil {
+		log.Fatalf("Error: %v", err)
+	}
 	db.WriteTodos(todos)
 
 	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
