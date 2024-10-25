@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
@@ -28,9 +30,26 @@ func init() {
 
 func initRun(cmd *cobra.Command, args []string) {
 	// TODO: ask for confirmation to overwrite existing file
-	err := todo.InitialiseDB(viper.GetString("datafile"))
+	dbpath := viper.GetString("datafile")
+	if fileExists(dbpath) {
+		log.Printf("Database already exists at %s. Doing nothing.", dbpath)
+		return
+	}
+	err := todo.InitialiseDB(dbpath)
 	if err != nil {
 		log.Fatalf("Initialising database failed with error `%v`", err)
 	}
 	log.Printf("Initialised todo database at %s", viper.GetString("datafile"))
+}
+
+func fileExists(path string) bool {
+	_, err := os.Stat(path)
+	if err == nil {
+		return true
+	}
+	if os.IsNotExist(err) {
+		return false
+	}
+	fmt.Printf("Error checking file %s: %v", path, err)
+	return false
 }
