@@ -20,8 +20,6 @@ var removeCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(removeCmd)
-	removeCmd.PersistentFlags().BoolP("verbose", "v", false,
-		"Verbosity, whether to print the task list when command finishes")
 }
 
 func runRemove(cmd *cobra.Command, args []string) {
@@ -42,11 +40,9 @@ func runRemove(cmd *cobra.Command, args []string) {
 		truePosition := id - i
 		err = todos.Remove(truePosition)
 		if err != nil {
-			log.Fatalf("Error for arg %s:  %v", arg, err)
+			log.Fatalf("%d did not match any items", id)
 		}
+		log.Println("Removed", id)
 	}
 	db.WriteTodos(todos)
-	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
-		todos.Print()
-	}
 }

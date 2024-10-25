@@ -19,8 +19,6 @@ var doneCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(doneCmd)
-	doneCmd.PersistentFlags().BoolP("verbose", "v", false,
-		"Verbosity, whether to print task list after completing")
 }
 
 func doneRun(cmd *cobra.Command, args []string) {
@@ -42,8 +40,4 @@ func doneRun(cmd *cobra.Command, args []string) {
 		log.Println(id, "marked done")
 	}
 	db.WriteTodos(todos)
-
-	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
-		todos.Print()
-	}
 }
