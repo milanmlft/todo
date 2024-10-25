@@ -1,8 +1,11 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
+	"os"
 	"sort"
+	"text/tabwriter"
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
@@ -15,28 +18,28 @@ var listCmd = &cobra.Command{
 	Long: `Display the current set of tasks with their identifier,
     description, priority, and status.
     `,
-	Run: func(cmd *cobra.Command, args []string) {
-		db := todo.GetDBHandler(dbPath)
-		todos, err := db.ReadTodos()
-		if err != nil {
-			log.Fatalf("Failed to read todos from database with `%v`", err)
-		}
-		// Use Reverse to list higher priority first
-		sort.Sort(sort.Reverse(todos))
-		todos.Print()
-	},
+	Run: listRun,
 }
+
+var doneOpt bool
 
 func init() {
 	rootCmd.AddCommand(listCmd)
+	listCmd.Flags().BoolVar(&doneOpt, "done", false, "Show 'Done' tasks")
+}
 
-	// Here you will define your flags and configuration settings.
+func listRun(cmd *cobra.Command, args []string) {
+	db := todo.GetDBHandler(dbPath)
+	todos, err := db.ReadTodos()
+	if err != nil {
+		log.Fatalf("Failed to read todos from database with `%v`", err)
+	}
+	// Use Reverse to list higher priority first
+	sort.Sort(sort.Reverse(todos))
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// listCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// listCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	writer := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
+	for _, task := range todos {
+		fmt.Fprintln(writer, task.PrettyPrint())
+	}
+	writer.Flush()
 }

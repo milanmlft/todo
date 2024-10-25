@@ -3,8 +3,6 @@ package todo
 import (
 	"errors"
 	"fmt"
-	"os"
-	"text/tabwriter"
 	"time"
 )
 
@@ -46,14 +44,6 @@ func (t *Todos) Remove(id int) error {
 	return nil
 }
 
-func (t *Todos) Print() {
-	writer := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
-	for _, task := range *t {
-		fmt.Fprintln(writer, task.prettyPrint())
-	}
-	writer.Flush()
-}
-
 func (task *Task) SetPriority(priority int) {
 	// We only allow a fixed set of priorities between 1-3
 	switch priority {
@@ -66,7 +56,7 @@ func (task *Task) SetPriority(priority int) {
 	}
 }
 
-func (task *Task) prettyPrint() string {
+func (task *Task) PrettyPrint() string {
 	var priorityLabel string
 
 	switch task.Priority {
