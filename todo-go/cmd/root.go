@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -43,13 +44,21 @@ func init() {
 // Read config file and ENV variables if set
 func initConfig() {
 	viper.SetConfigName(".todo-go")
+	viper.SetConfigType("yaml")
 	viper.AddConfigPath("$HOME")
 	viper.AutomaticEnv()
 	viper.SetEnvPrefix("todogo")
 
 	// If a config file is found, read it
 	err := viper.ReadInConfig()
-	if err == nil {
+	if err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			// Config file not found
+			fmt.Println("No config file found")
+		} else {
+			log.Fatalf("Config file found, but reading it gave error %v", err)
+		}
+	} else {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
 }
