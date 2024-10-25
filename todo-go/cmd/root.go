@@ -1,10 +1,11 @@
 package cmd
 
 import (
-	"log"
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -22,7 +23,7 @@ to quickly create a Cobra application.`,
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
-var dbPath string
+var cfgFile string
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
@@ -34,10 +35,21 @@ func Execute() {
 }
 
 func init() {
-	home, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatalf("Failed to retrieve home directory. Set path with --db-path.")
+	cobra.OnInitialize(initConfig)
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "",
+		"config file (default is $HOME/.todo-go.yaml")
+}
+
+// Read config file and ENV variables if set
+func initConfig() {
+	viper.SetConfigName(".todo-go")
+	viper.AddConfigPath("$HOME")
+	viper.AutomaticEnv()
+	viper.SetEnvPrefix("todogo")
+
+	// If a config file is found, read it
+	err := viper.ReadInConfig()
+	if err == nil {
+		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
-	path := home + string(os.PathSeparator) + ".todo-go.json"
-	rootCmd.PersistentFlags().StringVar(&dbPath, "db-path", path, "database to store todos")
 }

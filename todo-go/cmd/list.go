@@ -9,6 +9,7 @@ import (
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // listCmd represents the list command
@@ -36,7 +37,7 @@ func init() {
 }
 
 func listRun(cmd *cobra.Command, args []string) {
-	db := todo.GetDBHandler(dbPath)
+	db := todo.GetDBHandler(viper.GetString("datafile"))
 	todos, err := db.ReadTodos()
 	if err != nil {
 		log.Fatalf("Failed to read todos from database with `%v`", err)

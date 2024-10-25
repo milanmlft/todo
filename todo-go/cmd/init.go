@@ -5,6 +5,7 @@ import (
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // initCmd represents the init command
@@ -27,9 +28,9 @@ func init() {
 
 func initRun(cmd *cobra.Command, args []string) {
 	// TODO: ask for confirmation to overwrite existing file
-	err := todo.InitialiseDB(dbPath)
+	err := todo.InitialiseDB(viper.GetString("datafile"))
 	if err != nil {
 		log.Fatalf("Initialising database failed with error `%v`", err)
 	}
-	log.Printf("Initialised todo database at %s", dbPath)
+	log.Printf("Initialised todo database at %s", viper.GetString("datafile"))
 }
