@@ -37,9 +37,9 @@ func doneRun(cmd *cobra.Command, args []string) {
 		}
 		err = todos.Complete(id)
 		if err != nil {
-			log.Fatalf("Error for arg %s: %v", arg, err)
+			log.Fatalf("%d did not match any items", id)
 		}
-
+		log.Println(id, "marked done")
 	}
 	db.WriteTodos(todos)
 
