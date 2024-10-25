@@ -12,7 +12,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "todo-go",
-	Short: "Manage your tasks from teh command line",
+	Short: "Manage your tasks from the command line",
 }
 
 var cfgFile string
@@ -34,9 +34,12 @@ func init() {
 
 // Read config file and ENV variables if set
 func initConfig() {
-	viper.SetConfigName(".todo-go")
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("$HOME")
+	if cfgFile != "" {
+		viper.SetConfigFile(cfgFile)
+	} else {
+		viper.SetConfigName(".todo-go")
+		viper.AddConfigPath("$HOME")
+	}
 	viper.AutomaticEnv()
 	viper.SetEnvPrefix("todogo")
 
