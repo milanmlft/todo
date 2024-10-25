@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/milanmlft/todo/todo-go/todo"
 	"github.com/spf13/cobra"
@@ -29,11 +31,14 @@ func init() {
 }
 
 func initRun(cmd *cobra.Command, args []string) {
-	// TODO: ask for confirmation to overwrite existing file
 	dbpath := viper.GetString("datafile")
 	if fileExists(dbpath) {
-		log.Printf("Database already exists at %s. Doing nothing.", dbpath)
-		return
+		prompt := fmt.Sprintf("Database already exists at %s. Overwrite? [y/N]", dbpath)
+		confirm := askForConfirmation(prompt)
+		if !confirm {
+			fmt.Println("Doing nothing.")
+			return
+		}
 	}
 	err := todo.InitialiseDB(dbpath)
 	if err != nil {
@@ -52,4 +57,15 @@ func fileExists(path string) bool {
 	}
 	fmt.Printf("Error checking file %s: %v", path, err)
 	return false
+}
+
+func askForConfirmation(prompt string) bool {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print(prompt)
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+	}
+	input = strings.TrimSpace(strings.ToLower(input))
+	return input == "y" || input == "yes"
 }
