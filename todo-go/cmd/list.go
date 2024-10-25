@@ -39,7 +39,9 @@ func listRun(cmd *cobra.Command, args []string) {
 
 	writer := tabwriter.NewWriter(os.Stdout, 3, 0, 1, ' ', 0)
 	for _, task := range todos {
-		fmt.Fprintln(writer, task.PrettyPrint())
+		if task.Done == doneOpt {
+			fmt.Fprintln(writer, task.PrettyPrint())
+		}
 	}
 	writer.Flush()
 }
