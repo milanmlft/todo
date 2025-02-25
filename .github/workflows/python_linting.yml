@@ -21,7 +21,7 @@ jobs:
               uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
             - name: Cache pre-commit
-              uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
+              uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
               with:
                   path: ~/.cache/pre-commit
                   key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
