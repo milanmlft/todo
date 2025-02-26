@@ -11,7 +11,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Typing :: Typed",
 ]
-dependencies = ["configparser==7.1.0", "pathlib==1.0.1", "typer==0.9.0"]
+dependencies = ["configparser==7.1.0", "pathlib==1.0.1", "typer==0.15.1"]
 description = "A Todo list manager written in Python"
 dynamic = ["version"]
 keywords = []
