@@ -20,7 +20,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@0aaccfd150d50ccaeb58ebd88d36e91967a5f35b # v5
         with:
-          go-version: "1.23"
+          go-version: "1.24"
 
       - name: Build
         run: cd todo-go && go build -v ./...
