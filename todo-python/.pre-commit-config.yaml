@@ -1,7 +1,7 @@
 files: ^todo-python/
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.14
+    rev: v0.13.2
     hooks:
       - id: ruff
       - id: ruff-format
